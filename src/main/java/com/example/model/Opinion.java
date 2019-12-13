@@ -20,6 +20,8 @@ public class Opinion {
         this.opinionContent = opinionContent;
     }
 
+    public Opinion(){}
+
     public Opinion(long gameId, String authorName, String opinionContent) {
         this.authorName = authorName;
         this.opinionContent = opinionContent;
