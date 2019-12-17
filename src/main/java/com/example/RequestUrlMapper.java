@@ -37,10 +37,10 @@ public class RequestUrlMapper {
         switch (uri) {
             case POST_ADD_GAME:
                 return gameController.serveAddGame(session);
-            case POST_ADD_OPINION:
-                return gameController.serveAddOpinion(session);
             case POST_ADD_RATING:
                 return gameController.serveAddRating(session);
+            case POST_ADD_OPINION:
+                return gameController.serveAddOpinion(session);
             default:
                 return newFixedLengthResponse(NOT_FOUND,"text/plain", "Bad POST request: " + session.getUri());
         }

@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -12,6 +13,10 @@ public class Game {
     //    private Date premiereDate;
     private List<Integer> ratings = new ArrayList<>();
     private List<Opinion> opinions = new ArrayList<>();
+
+    public String getRatings() {
+        return Arrays.toString(new List[]{ratings});
+    }
 
     @Override
     public String toString() {
