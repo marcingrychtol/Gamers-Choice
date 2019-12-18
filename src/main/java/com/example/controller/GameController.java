@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.model.Game;
-import com.example.model.Opinion;
+import com.example.dto.Game;
+import com.example.dto.Opinion;
 import com.example.storage.GameStorage;
 import com.example.storage.impl.GameStorageImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static fi.iki.elonen.NanoHTTPD.Response.Status.*;
 import static fi.iki.elonen.NanoHTTPD.newFixedLengthResponse;
@@ -41,7 +40,7 @@ public class GameController {
             gameStorage.addGame(game);
             return newFixedLengthResponse(OK, "text/plain", "Game suscessfully added: " +
                     gameStorage.getGameData(game.getGameId()).toString());
-        } catch (JsonProcessingException e) {
+        } catch (IOException e) {
             return newFixedLengthResponse(INTERNAL_ERROR, "text.plain",
                     "Unable to parse Game data! " + e.getMessage());
         }
@@ -114,7 +113,7 @@ public class GameController {
         try {
             Opinion opinion = objectMapper.readValue(incomeMappedObjectBody, Opinion.class );
             gameStorage.getGameData(incomeGameID).addOpinion(opinion);
-        } catch (JsonProcessingException e){
+        } catch (IOException e){
             return newFixedLengthResponse(INTERNAL_ERROR, "text.plain",
                     "Unable to parse Game data! " + e.getMessage());
         }

@@ -1,17 +1,30 @@
-package com.example.model;
+package com.example.dto;
 
+import com.example.dto.converters.LocalDateDeserializer;
+import com.example.dto.converters.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     private long gameId;
+
     private String name;
+
     private String producer;
     private Platform platform;
-//        @JsonFormat (shape = Shape.STRING, pattern = "dd/MM/yyyy")
-//        private Date premiereDate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate premiereDate;
     private List<Integer> ratings = new ArrayList<>();
     private List<Opinion> opinions = new ArrayList<>();
+
+    public Game() {
+    }
 
     public List<Integer> getRatings() {
         return ratings;
@@ -59,28 +72,29 @@ public class Game {
         return result;
     }
 
-    public Game(){
+    public Game(long gameId, String disco_elysium, String electronic_arts, LocalDate of, Platform pc) {
     }
 
-    public Game(/*long gameId, */String name, String producer, Platform platform) {
-//        this.gameId = gameId;
+    public Game(String name, String producer, LocalDate premiereDate, Platform platform) {
         this.name = name;
         this.producer = producer;
-//        this.premiereDate = premiereDate;
+        this.premiereDate = premiereDate;
         this.platform = platform;
     }
-    public Game(long gameId, String name, String producer, Platform platform) {
+
+    public Game(long gameId, String name, LocalDate premiereDate, String producer, Platform platform) {
         this.gameId = gameId;
         this.name = name;
         this.producer = producer;
-//        this.premiereDate = premiereDate;
+        this.premiereDate = premiereDate;
         this.platform = platform;
     }
 
-    public void addRating(Integer rating){
+    public void addRating(Integer rating) {
         this.ratings.add(rating);
     }
-    public void addOpinion(Opinion opinion){
+
+    public void addOpinion(Opinion opinion) {
         this.opinions.add(opinion);
     }
 
@@ -107,14 +121,14 @@ public class Game {
     public void setProducer(String producer) {
         this.producer = producer;
     }
-//
-//    public Date getPremiereDate() {
-//        return premiereDate;
-//    }
-//
-//    public void setPremiereDate(Date premiereDate) {
-//        this.premiereDate = premiereDate;
-//    }
+
+    public LocalDate getPremiereDate() {
+        return premiereDate;
+    }
+
+    public void setPremiereDate(LocalDate premiereDate) {
+        this.premiereDate = premiereDate;
+    }
 
     public Platform getPlatform() {
         return platform;
@@ -122,5 +136,13 @@ public class Game {
 
     public void setPlatform(Platform platform) {
         this.platform = platform;
+    }
+
+    public void setRatings(List<Integer> ratings) {
+        this.ratings = ratings;
+    }
+
+    public void setOpinions(List<Opinion> opinions) {
+        this.opinions = opinions;
     }
 }

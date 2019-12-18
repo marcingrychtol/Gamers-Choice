@@ -1,7 +1,7 @@
 package com.example.storage;
 
-import com.example.model.Game;
-import com.example.model.Opinion;
+import com.example.dto.Game;
+import com.example.dto.Opinion;
 
 public interface GameStorage {
 

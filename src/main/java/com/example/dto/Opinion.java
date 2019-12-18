@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.dto;
 
 public class Opinion {
     private String authorName;

@@ -2,9 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22553ddb-29f1-499b-b56f-6cbb335afe9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/converters/LocalDateDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/converters/LocalDateSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Opinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/Opinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/storage/GameStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/GameStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/storage/impl/GameStorageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/impl/GameStorageImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Opinion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Platform.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/storage/GameStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/storage/GameStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/storage/impl/GameStorageImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/storage/impl/GameStorageImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,5 +110,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/GameController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
