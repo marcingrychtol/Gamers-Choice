@@ -1,7 +1,6 @@
 package com.example.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -9,13 +8,17 @@ public class Game {
     private String name;
     private String producer;
     private Platform platform;
-    //    @JsonFormat (shape = Shape.STRING, pattern = "dd/MM/yyyy")
-    //    private Date premiereDate;
+//        @JsonFormat (shape = Shape.STRING, pattern = "dd/MM/yyyy")
+//        private Date premiereDate;
     private List<Integer> ratings = new ArrayList<>();
     private List<Opinion> opinions = new ArrayList<>();
 
-    public String getRatings() {
-        return Arrays.toString(new List[]{ratings});
+    public List<Integer> getRatings() {
+        return ratings;
+    }
+
+    public List<Opinion> getOpinions() {
+        return opinions;
     }
 
     @Override
