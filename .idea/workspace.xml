@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22553ddb-29f1-499b-b56f-6cbb335afe9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/di/DependencyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/di/containers/DependencyContained.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/di/containers/DependencyContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/di/containers/impl/LocalDependencyContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/di/containers/impl/PostgresDependencyContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/GameStoraging.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/impl/PostgresGameStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/VideoStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/VideoStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/storage/GameStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/GameStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/storage/impl/GameStorageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/storage/impl/LocalGameStorage.java" afterDir="false" />
-    </list>
+    <list default="true" id="22553ddb-29f1-499b-b56f-6cbb335afe9d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +84,14 @@
       <option name="presentableId" value="Default" />
       <updated>1576156231777</updated>
     </task>
+    <task id="LOCAL-00001" summary="di with bugs">
+      <created>1577721409030</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577721409030</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,5 +106,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="di with bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="di with bugs" />
   </component>
 </project>
