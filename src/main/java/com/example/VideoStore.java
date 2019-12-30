@@ -1,5 +1,8 @@
 package com.example;
 
+import com.example.di.DependencyController;
+import com.example.di.containers.impl.LocalDependencyContainer;
+import com.example.storage.impl.LocalGameStorage;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.IOException;
 
@@ -15,6 +18,8 @@ public class VideoStore extends NanoHTTPD {
 
     public static void main(String[] args )
     {
+
+        DependencyController.setDependencyContainer(new LocalDependencyContainer());
         try {
             VideoStore videoStore = new VideoStore(8081);
         } catch (IOException e) {

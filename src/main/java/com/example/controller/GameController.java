@@ -1,9 +1,12 @@
 package com.example.controller;
 
+import com.example.di.DependencyController;
+import com.example.di.containers.DependencyContainer;
 import com.example.dto.Game;
 import com.example.dto.Opinion;
 import com.example.storage.GameStorage;
-import com.example.storage.impl.GameStorageImpl;
+import com.example.storage.GameStoraging;
+import com.example.storage.impl.LocalGameStorage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fi.iki.elonen.NanoHTTPD.IHTTPSession;
@@ -22,7 +25,7 @@ public class GameController {
     private static final String GAME_ID_PARAMETER = "gameId";
     private static final String GAME_RATING_PARAMETER = "rating";
 
-    private GameStorage gameStorage = new GameStorageImpl();
+    private GameStoraging gameStorage = DependencyController.getDependencyContainer().get(GameStorage.class);
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private String incomeMappedObjectBody; // stores value from mapToString method

@@ -1,15 +1,19 @@
 package com.example.storage;
 
 import com.example.dto.Game;
-import com.example.dto.Opinion;
 
-public interface GameStorage {
+import java.util.ArrayList;
+import java.util.List;
 
-    void addGame(Game game);
+public abstract class GameStorage implements GameStoraging{
+    public List<Game> getGameList() {
+        return gameList;
+    }
 
-    void addRating(long id, Integer rating);
+    public void setGameList(List<Game> gameList) {
+        this.gameList = gameList;
+    }
 
-    void addOpinion(long id, Opinion opinion);
+    private List<Game> gameList = new ArrayList<>();
 
-    Game getGameData(long id);
 }
