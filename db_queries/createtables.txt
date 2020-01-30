@@ -1,0 +1,18 @@
+create table games (
+id serial primary key,
+producer character varying(50) not null,
+name character varying(50) not null,
+platform character varying(50) not null,
+premiere_date date not null);
+
+create table opinions (
+id serial primary key,
+game_id integer references games(id),
+author character varying(50) not null,
+content text not null
+);
+
+create table ratings (
+id serial primary key,
+game_id integer references games(id),
+rating integer not null);
