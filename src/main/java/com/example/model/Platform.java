@@ -1,6 +1,7 @@
 package com.example.model;
 
 public class Platform {
+    private int id;
     private String secondName;
     private String name;
 
@@ -28,6 +29,14 @@ public class Platform {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {

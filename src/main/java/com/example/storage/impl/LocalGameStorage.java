@@ -16,7 +16,7 @@ public class LocalGameStorage extends GameStorage {
     }
 
     @Override
-    public void addRating(long id, Integer rating){
+    public void addRating(int id, Integer rating){
         for  (Game game :super.getGameList()){
             if (game.getGameId() == id){
                 game.addRating(rating);
@@ -25,11 +25,11 @@ public class LocalGameStorage extends GameStorage {
     }
 
     @Override
-    public  void addOpinion(long gameID, Opinion opinion){
+    public  void addOpinion(int gameID, Opinion opinion){
     }
 
     @Override
-    public Game getGameData(long id){
+    public Game getGameData(int id){
         for (Game game :super.getGameList()){
             if (game.getGameId() == id){
                 return game;
@@ -39,7 +39,7 @@ public class LocalGameStorage extends GameStorage {
     }
 
     public LocalGameStorage() {
-        long id = System.currentTimeMillis();
+        int id = (int)System.currentTimeMillis();
 
         super.getGameList().add(new Game(id+1, "Need For Speed:  High Stakes","Electronic Arts", LocalDate.of(2017,12,01), new Platform("XBOX")));
         super.getGameList().add(new Game(id+2, "Red Dead Redemption 2","Rockstar Games", LocalDate.of(2019,11,5), new Platform("Play Station")));
@@ -50,4 +50,6 @@ public class LocalGameStorage extends GameStorage {
         super.getGameList().add(new Game(id+7, "Worms","Team 17", LocalDate.of(1995,3,19), new Platform("DOS")));
         super.getGameList().add(new Game(id+8, "The Sims","Maxis", LocalDate.of(2000,2,4), new Platform("PC")));
     }
+
+
 }

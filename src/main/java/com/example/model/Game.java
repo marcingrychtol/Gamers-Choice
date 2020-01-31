@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private long gameId;
+    private int gameId;
 
     private String name;
 
@@ -73,7 +73,7 @@ public class Game {
         return result;
     }
 
-    public Game(long gameId, String disco_elysium, String electronic_arts, LocalDate of, Platform pc) {
+    public Game(int gameId, String disco_elysium, String electronic_arts, LocalDate of, Platform pc) {
     }
 
     public Game(String name, String producer, LocalDate premiereDate, Platform platform) {
@@ -83,7 +83,7 @@ public class Game {
         this.platform = platform;
     }
 
-    public Game(long gameId, String name, LocalDate premiereDate, String producer, Platform platform) {
+    public Game(int gameId, String name, LocalDate premiereDate, String producer, Platform platform) {
         this.gameId = gameId;
         this.name = name;
         this.producer = producer;
@@ -99,11 +99,11 @@ public class Game {
         this.opinions.add(opinion);
     }
 
-    public long getGameId() {
+    public int getGameId() {
         return gameId;
     }
 
-    public void setGameId(long gameId) {
+    public void setGameId(int gameId) {
         this.gameId = gameId;
     }
 

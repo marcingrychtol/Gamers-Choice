@@ -6,31 +6,35 @@ import com.example.model.Platform;
 import com.example.storage.GameStorage;
 
 import java.sql.*;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostgresGameStorage extends GameStorage {
 
 
     private static final String DB_ADDRESS = "jdbc:postgresql://localhost:5432/video_store";
-    private static final String USER_PASS = "password";
+    private static final String USER_PASS = "postgres";
     private static final String USER_NAME = "postgres";
 
     @Override
     public void addGame(Game game) {
 
         final String ADD_QUERY =
-                "INSERT INTO games (id, producer, name, platform, premiere_date) VALUES" +
-                        "(?,?,?,?,?);";
+                "INSERT INTO games (producer, name, platform_id, premiere_date) VALUES" +
+                        "(?,?,?,?);";
 
         Connection connection = initializeConnection();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(ADD_QUERY);
 
-            preparedStatement.setDouble(1,game.getGameId());
-            preparedStatement.setString(2,game.getProducer());
-            preparedStatement.setString(3,game.getName());
-            preparedStatement.setString(4,game.getPlatform().getName());
-            preparedStatement.setDate(5, Date.valueOf(game.getPremiereDate()));
+            preparedStatement.setString(1,game.getProducer());
+            preparedStatement.setString(2,game.getName());
+            preparedStatement.setInt(3,game.getPlatform().getId());
+            preparedStatement.setObject(4, game.getPremiereDate());
 
             preparedStatement.executeUpdate();
 
@@ -44,15 +48,16 @@ public class PostgresGameStorage extends GameStorage {
     }
 
     @Override
-    public void addRating(long id, Integer rating) {
+    public void addRating(int id, Integer rating) {
         final String ADD_QUERY =
-                "INSERT INTO ratings (id, game_id, rating) VALUES" +
-                        "(?,?,?);";
+                "INSERT INTO ratings (game_id, rating) VALUES" +
+                        "(?,?);";
 
         Connection connection = initializeConnection();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(ADD_QUERY);
+            preparedStatement.setInt(1, id);
             preparedStatement.setInt(1,rating);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -65,20 +70,19 @@ public class PostgresGameStorage extends GameStorage {
     }
 
     @Override
-    public void addOpinion(long id, Opinion opinion) {
+    public void addOpinion(int id, Opinion opinion) {
         final String ADD_QUERY =
-                "INSERT INTO opinions (id, game_id, author, content) VALUES" +
-                        "(?,?,?,?,?);";
+                "INSERT INTO opinions (game_id, author, content) VALUES" +
+                        "(?,?,?);";
 
         Connection connection = initializeConnection();
         PreparedStatement preparedStatement = null;
 
         try {
             preparedStatement = connection.prepareStatement(ADD_QUERY);
-            preparedStatement.setLong(1,id);
-            preparedStatement.setInt(2, opinion.getGameId());
-            preparedStatement.setString(3, opinion.getAuthorName());
-            preparedStatement.setString(4, opinion.getOpinionContent());
+            preparedStatement.setInt(1, opinion.getGameId());
+            preparedStatement.setString(2, opinion.getAuthorName());
+            preparedStatement.setString(3, opinion.getOpinionContent());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Failed to execute set or execute query.");
@@ -90,10 +94,10 @@ public class PostgresGameStorage extends GameStorage {
     }
 
     @Override
-    public Game getGameData(long id) {
+    public Game getGameData(int id) {
         final String GET_GAME_BYID_QUERY = "SELECT * FROM games WHERE id=?";
         final String GET_OPINIONS_BYID_QUERY = "SELECT * FROM opinions WHERE game_id=?";
-        final String GET_PLATFORM_BYID_QUERY = "SELECT * FROM platforms WHERE game_id=?";
+        final String GET_PLATFORM_BYID_QUERY = "SELECT * FROM platforms WHERE id=?";
         final String GET_RATINGS_BYID_QUERY = "SELECT * FROM ratings WHERE game_id=?";
 
         Connection connection = initializeConnection();
@@ -105,13 +109,15 @@ public class PostgresGameStorage extends GameStorage {
             preparedStatement = connection.prepareStatement(GET_GAME_BYID_QUERY);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            int platformId = 0;
 
             if (resultSet.next()) {
 
-                game.setGameId(resultSet.getLong("id"));
+                game.setGameId(resultSet.getInt("id"));
                 game.setName(resultSet.getString("name"));
                 game.setProducer(resultSet.getString("producer"));
-                game.setPremiereDate(resultSet.getDate("year_of_published"));
+                game.setPremiereDate(resultSet.getDate("premiere_date"));
+                platformId = resultSet.getInt("platform_id");
             }
 
             preparedStatement = connection.prepareStatement(GET_OPINIONS_BYID_QUERY);
@@ -126,7 +132,7 @@ public class PostgresGameStorage extends GameStorage {
             }
 
             preparedStatement = connection.prepareStatement(GET_PLATFORM_BYID_QUERY);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, platformId);
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -182,5 +188,36 @@ public class PostgresGameStorage extends GameStorage {
             throw new RuntimeException("Error during closing database connection!");
         }
 
+    }
+
+    public static String getDbAddress() {
+        return DB_ADDRESS;
+    }
+
+    public static String getUserPass() {
+        return USER_PASS;
+    }
+
+    public static String getUserName() {
+        return USER_NAME;
+    }
+
+    public void setGameList(List<Game> gameList) {
+        super.setGameList(gameList);
+    }
+
+    public List<Game> getGameList() {
+        return super.getGameList();
+    }
+
+    public PostgresGameStorage() {
+        this.addGame(new Game("Need For Speed:  High Stakes","Electronic Arts", LocalDate.of(2017,12,01), new Platform("XBOX")));
+        this.addGame(new Game("Red Dead Redemption 2","Rockstar Games", LocalDate.of(2019,11,5), new Platform("Play Station")));
+        this.addGame(new Game("Disco Elysium","Electronic Arts", LocalDate.of(2019,10,15), new Platform("PC")));
+        this.addGame(new Game("Rally Championship 2000","Magnetic Fields", LocalDate.of(2000,1,31), new Platform("PC")));
+        this.addGame(new Game("Half life 2","Valve Software", LocalDate.of(2004,11,16), new Platform("PC")));
+        this.addGame(new Game("Grand Theft Auto: Vice City","Rockstar North", LocalDate.of(2003,3,12), new Platform("Play Station")));
+        this.addGame(new Game("Worms","Team 17", LocalDate.of(1995,3,19), new Platform("DOS")));
+        this.addGame(new Game("The Sims","Maxis", LocalDate.of(2000,2,4), new Platform("PC")));
     }
 }

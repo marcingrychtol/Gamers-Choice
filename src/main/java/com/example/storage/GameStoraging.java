@@ -7,9 +7,9 @@ public interface GameStoraging {
 
     void addGame(Game game);
 
-    void addRating(long id, Integer rating);
+    void addRating(int id, Integer rating);
 
-    void addOpinion(long id, Opinion opinion);
+    void addOpinion(int id, Opinion opinion);
 
-    Game getGameData(long id);
+    Game getGameData(int id);
 }

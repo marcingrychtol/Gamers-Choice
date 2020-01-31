@@ -7,6 +7,7 @@ import com.example.storage.GameStorage;
 import com.example.storage.GameStoraging;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import fi.iki.elonen.NanoHTTPD.IHTTPSession;
 import fi.iki.elonen.NanoHTTPD.Response;
 
@@ -26,8 +27,13 @@ public class GameController {
     private GameStoraging gameStorage = DependencyController.getDependencyContainer().get(GameStorage.class);
     private ObjectMapper objectMapper = new ObjectMapper();
 
+//    {
+//        objectMapper.registerModule(new JavaTimeModule());
+//        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+//    }
+
     private String incomeMappedObjectBody; // stores value from mapToString method
-    private long incomeGameID; // stores value from checkGameExists method
+    private int incomeGameID; // stores value from checkGameExists method
 
     public Response serveAddGame(IHTTPSession session) {
 
@@ -37,7 +43,7 @@ public class GameController {
 
         try {
             Game game = objectMapper.readValue(incomeMappedObjectBody, Game.class);
-            game.setGameId(System.currentTimeMillis());
+            game.setGameId((int)System.currentTimeMillis());
             gameStorage.addGame(game);
             return newFixedLengthResponse(OK, "text/plain", "Game suscessfully added: " +
                     gameStorage.getGameData(game.getGameId()).toString());
@@ -59,10 +65,10 @@ public class GameController {
 
         Game game;
         parameterContentList = parameterMap.get(GAME_ID_PARAMETER);
-        long gameId;
+        int gameId;
 
         try {
-            gameId = Long.parseLong(parameterContentList.get(0));
+            gameId = Integer.parseInt(parameterContentList.get(0));
             game = gameStorage.getGameData(gameId);
             if (game == null) {
                 return newFixedLengthResponse(NOT_FOUND, "text/plain",
@@ -113,7 +119,7 @@ public class GameController {
 
         try {
             Opinion opinion = objectMapper.readValue(incomeMappedObjectBody, Opinion.class );
-            gameStorage.addOpinion(System.currentTimeMillis(),opinion);
+            gameStorage.addOpinion((int)System.currentTimeMillis(),opinion);
         } catch (IOException e){
             return newFixedLengthResponse(INTERNAL_ERROR, "text.plain",
                     "Unable to parse Game data! " + e.getMessage());
@@ -135,7 +141,7 @@ public class GameController {
         parameterContentList = parameterMap.get(GAME_ID_PARAMETER);
 
         try {
-            long gameId = Long.parseLong(parameterContentList.get(0));
+            int gameId = Integer.parseInt(parameterContentList.get(0));
             Game game = gameStorage.getGameData(gameId);
 
             if (game == null) {
@@ -174,10 +180,10 @@ public class GameController {
         }
 
         parameterContentList = parameterMap.get(GAME_ID_PARAMETER);
-        long gameId;
+        int gameId;
 
         try {
-            gameId = Long.parseLong(parameterContentList.get(0));
+            gameId = Integer.parseInt(parameterContentList.get(0));
             if (gameStorage.getGameData(gameId) == null) {
                 return newFixedLengthResponse(NOT_FOUND, "text/plain",
                         "No such game in repository: " + gameId);

@@ -1,6 +1,7 @@
 package com.example.model;
 
 public class Opinion {
+    private Integer id;
     private Integer gameId;
     private String authorName;
     private String opinionContent;
