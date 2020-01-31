@@ -1,12 +1,13 @@
-package com.example.dto;
+package com.example.model;
 
-import com.example.dto.converters.LocalDateDeserializer;
-import com.example.dto.converters.LocalDateSerializer;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.example.model.converters.LocalDateDeserializer;
+import com.example.model.converters.LocalDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,8 +127,9 @@ public class Game {
         return premiereDate;
     }
 
-    public void setPremiereDate(LocalDate premiereDate) {
-        this.premiereDate = premiereDate;
+    public void setPremiereDate(Date premiereDate) {
+
+        this.premiereDate = premiereDate.toInstant().atZone(ZoneId.of("ECT")).toLocalDate();
     }
 
     public Platform getPlatform() {

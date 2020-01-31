@@ -1,4 +1,4 @@
-package com.example.dto.converters;
+package com.example.model.converters;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;

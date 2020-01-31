@@ -1,6 +1,6 @@
 package com.example.di.containers;
 
-public interface DependencyContained {
+public interface DependencyContaining {
 
     <T> T get(Class<T> klass);
 

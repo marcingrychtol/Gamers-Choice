@@ -1,12 +1,10 @@
 package com.example.controller;
 
 import com.example.di.DependencyController;
-import com.example.di.containers.DependencyContainer;
-import com.example.dto.Game;
-import com.example.dto.Opinion;
+import com.example.model.Game;
+import com.example.model.Opinion;
 import com.example.storage.GameStorage;
 import com.example.storage.GameStoraging;
-import com.example.storage.impl.LocalGameStorage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fi.iki.elonen.NanoHTTPD.IHTTPSession;
@@ -88,7 +86,7 @@ public class GameController {
                 return newFixedLengthResponse(BAD_REQUEST, "text/plain",
                         "Rating out of range 0 .. 10: " + rating);
             }
-            game.addRating(rating);
+            gameStorage.get;
         } catch (NumberFormatException e) {
             return newFixedLengthResponse(INTERNAL_ERROR, "text/plain",
                     "Internal error while parsing ID value: " +
@@ -128,7 +126,7 @@ public class GameController {
     public Response serveGetGameData(IHTTPSession session) {
 
         Map<String, List<String>> parameterMap = session.getParameters();
-        List<String> parameterContentList = new ArrayList<>();
+        List<String> parameterContentList;
 
         if (!parameterMap.containsKey(GAME_ID_PARAMETER)) {
             return newFixedLengthResponse(BAD_REQUEST, "text/plain", "Wrong parameter: " + parameterMap);

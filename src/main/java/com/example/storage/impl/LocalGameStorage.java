@@ -1,15 +1,12 @@
 
 package com.example.storage.impl;
 
-import com.example.dto.Game;
-import com.example.dto.Opinion;
-import com.example.dto.Platform;
+import com.example.model.Game;
+import com.example.model.Opinion;
+import com.example.model.Platform;
 import com.example.storage.GameStorage;
-import com.example.storage.GameStoraging;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LocalGameStorage extends GameStorage {
 
