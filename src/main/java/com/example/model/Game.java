@@ -18,9 +18,9 @@ public class Game {
 
     private String producer;
     private Platform platform;
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate premiereDate;
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
+//    private LocalDate premiereDate;
     private List<Integer> ratings = new ArrayList<>();
     private List<Opinion> opinions = new ArrayList<>();
 
@@ -79,7 +79,7 @@ public class Game {
     public Game(String name, String producer, LocalDate premiereDate, Platform platform) {
         this.name = name;
         this.producer = producer;
-        this.premiereDate = premiereDate;
+//        this.premiereDate = premiereDate;
         this.platform = platform;
     }
 
@@ -87,7 +87,7 @@ public class Game {
         this.gameId = gameId;
         this.name = name;
         this.producer = producer;
-        this.premiereDate = premiereDate;
+//        this.premiereDate = premiereDate;
         this.platform = platform;
     }
 
@@ -123,14 +123,14 @@ public class Game {
         this.producer = producer;
     }
 
-    public LocalDate getPremiereDate() {
-        return premiereDate;
-    }
-
-    public void setPremiereDate(Date premiereDate) {
-
-        this.premiereDate = premiereDate.toInstant().atZone(ZoneId.of("ECT")).toLocalDate();
-    }
+//    public LocalDate getPremiereDate() {
+//        return premiereDate;
+//    }
+//
+//    public void setPremiereDate(Date premiereDate) {
+//
+//        this.premiereDate = premiereDate.toInstant().atZone(ZoneId.of("ECT")).toLocalDate();
+//    }
 
     public Platform getPlatform() {
         return platform;

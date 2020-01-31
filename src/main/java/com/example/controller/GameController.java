@@ -46,7 +46,7 @@ public class GameController {
             game.setGameId((int)System.currentTimeMillis());
             gameStorage.addGame(game);
             return newFixedLengthResponse(OK, "text/plain", "Game suscessfully added: " +
-                    gameStorage.getGameData(game.getGameId()).toString());
+                    game.toString());
         } catch (IOException e) {
             return newFixedLengthResponse(INTERNAL_ERROR, "text.plain",
                     "Unable to parse Game data! " + e.getMessage());

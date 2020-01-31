@@ -23,8 +23,8 @@ public class PostgresGameStorage extends GameStorage {
     public void addGame(Game game) {
 
         final String ADD_QUERY =
-                "INSERT INTO games (producer, name, platform_id, premiere_date) VALUES" +
-                        "(?,?,?,?);";
+                "INSERT INTO games (producer, name, platform_id/*, premiere_date*/) VALUES" +
+                        "(?,?,?);";
 
         Connection connection = initializeConnection();
         PreparedStatement preparedStatement = null;
@@ -34,7 +34,7 @@ public class PostgresGameStorage extends GameStorage {
             preparedStatement.setString(1,game.getProducer());
             preparedStatement.setString(2,game.getName());
             preparedStatement.setInt(3,game.getPlatform().getId());
-            preparedStatement.setObject(4, game.getPremiereDate());
+//            preparedStatement.setObject(4, game.getPremiereDate());
 
             preparedStatement.executeUpdate();
 
@@ -116,7 +116,7 @@ public class PostgresGameStorage extends GameStorage {
                 game.setGameId(resultSet.getInt("id"));
                 game.setName(resultSet.getString("name"));
                 game.setProducer(resultSet.getString("producer"));
-                game.setPremiereDate(resultSet.getDate("premiere_date"));
+//                game.setPremiereDate(resultSet.getDate("premiere_date"));
                 platformId = resultSet.getInt("platform_id");
             }
 
@@ -211,13 +211,13 @@ public class PostgresGameStorage extends GameStorage {
     }
 
     public PostgresGameStorage() {
-        this.addGame(new Game("Need For Speed:  High Stakes","Electronic Arts", LocalDate.of(2017,12,01), new Platform("XBOX")));
-        this.addGame(new Game("Red Dead Redemption 2","Rockstar Games", LocalDate.of(2019,11,5), new Platform("Play Station")));
-        this.addGame(new Game("Disco Elysium","Electronic Arts", LocalDate.of(2019,10,15), new Platform("PC")));
-        this.addGame(new Game("Rally Championship 2000","Magnetic Fields", LocalDate.of(2000,1,31), new Platform("PC")));
-        this.addGame(new Game("Half life 2","Valve Software", LocalDate.of(2004,11,16), new Platform("PC")));
-        this.addGame(new Game("Grand Theft Auto: Vice City","Rockstar North", LocalDate.of(2003,3,12), new Platform("Play Station")));
-        this.addGame(new Game("Worms","Team 17", LocalDate.of(1995,3,19), new Platform("DOS")));
-        this.addGame(new Game("The Sims","Maxis", LocalDate.of(2000,2,4), new Platform("PC")));
+//        this.addGame(new Game("Need For Speed:  High Stakes","Electronic Arts", LocalDate.of(2017,12,01), new Platform("XBOX")));
+//        this.addGame(new Game("Red Dead Redemption 2","Rockstar Games", LocalDate.of(2019,11,5), new Platform("Play Station")));
+//        this.addGame(new Game("Disco Elysium","Electronic Arts", LocalDate.of(2019,10,15), new Platform("PC")));
+//        this.addGame(new Game("Rally Championship 2000","Magnetic Fields", LocalDate.of(2000,1,31), new Platform("PC")));
+//        this.addGame(new Game("Half life 2","Valve Software", LocalDate.of(2004,11,16), new Platform("PC")));
+//        this.addGame(new Game("Grand Theft Auto: Vice City","Rockstar North", LocalDate.of(2003,3,12), new Platform("Play Station")));
+//        this.addGame(new Game("Worms","Team 17", LocalDate.of(1995,3,19), new Platform("DOS")));
+//        this.addGame(new Game("The Sims","Maxis", LocalDate.of(2000,2,4), new Platform("PC")));
     }
 }
