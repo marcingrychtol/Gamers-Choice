@@ -2,6 +2,7 @@ package com.example.model;
 
 import com.example.model.converters.LocalDateDeserializer;
 import com.example.model.converters.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -18,6 +19,7 @@ public class Game {
 
     private String producer;
     private Platform platform;
+    @JsonFormat(pattern = "YYYY-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate premiereDate;
