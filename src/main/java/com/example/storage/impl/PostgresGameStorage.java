@@ -53,15 +53,8 @@ public class PostgresGameStorage extends GameStorage {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(ADD_QUERY);
-
-            preparedStatement.setDouble(1,game.getGameId());
-            preparedStatement.setString(2,game.getProducer());
-            preparedStatement.setString(3,game.getName());
-            preparedStatement.setString(4,game.getPlatform().getName());
-            preparedStatement.setDate(5, Date.valueOf(game.getPremiereDate()));
-
+            preparedStatement.setInt(1,rating);
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             System.err.println("Failed to execute set or execute query.");
             e.printStackTrace();
@@ -73,7 +66,27 @@ public class PostgresGameStorage extends GameStorage {
 
     @Override
     public void addOpinion(long id, Opinion opinion) {
+        final String ADD_QUERY =
+                "INSERT INTO opinions (id, game_id, author, content) VALUES" +
+                        "(?,?,?,?,?);";
 
+        Connection connection = initializeConnection();
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(ADD_QUERY);
+            preparedStatement.setLong(1,id);
+            preparedStatement.setInt(2, opinion.getGameId());
+            preparedStatement.setString(3, opinion.getAuthorName());
+            preparedStatement.setString(4, opinion.getOpinionContent());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Failed to execute set or execute query.");
+            e.printStackTrace();
+            throw new RuntimeException("Failed to execute set or execute query: " + e.getMessage());
+        } finally {
+            closeConnection(connection, preparedStatement);
+        }
     }
 
     @Override
@@ -143,10 +156,6 @@ public class PostgresGameStorage extends GameStorage {
             closeConnection(connection, preparedStatement);
         }
 
-
-
-
-        return null;
     }
 
     private Connection initializeConnection() {

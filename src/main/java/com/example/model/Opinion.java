@@ -1,6 +1,7 @@
 package com.example.model;
 
 public class Opinion {
+    private Integer gameId;
     private String authorName;
     private String opinionContent;
 
@@ -18,6 +19,14 @@ public class Opinion {
 
     public void setOpinionContent(String opinionContent) {
         this.opinionContent = opinionContent;
+    }
+
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
     }
 
     public Opinion(){}

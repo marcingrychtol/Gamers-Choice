@@ -86,7 +86,7 @@ public class GameController {
                 return newFixedLengthResponse(BAD_REQUEST, "text/plain",
                         "Rating out of range 0 .. 10: " + rating);
             }
-            gameStorage.get;
+            gameStorage.addRating(gameId,rating);
         } catch (NumberFormatException e) {
             return newFixedLengthResponse(INTERNAL_ERROR, "text/plain",
                     "Internal error while parsing ID value: " +
@@ -113,7 +113,7 @@ public class GameController {
 
         try {
             Opinion opinion = objectMapper.readValue(incomeMappedObjectBody, Opinion.class );
-            gameStorage.getGameData(incomeGameID).addOpinion(opinion);
+            gameStorage.addOpinion(System.currentTimeMillis(),opinion);
         } catch (IOException e){
             return newFixedLengthResponse(INTERNAL_ERROR, "text.plain",
                     "Unable to parse Game data! " + e.getMessage());
